@@ -31,7 +31,7 @@ public class Employee {
     private String region;
 
     @Column(name = "class")
-    private String employeeClass; // 👈 maps to column `class`
+    private String employeeClass;
 
     @Column(name = "company_name")
     private String companyName;
@@ -60,11 +60,8 @@ public class Employee {
     @Column(name = "hiredate")
     private String hireDate;
 
-    @Column(name = "hire_status")
-    private String hireStatus;
-
-    @Column(name = "hire_rescinded")
-    private String hireRescinded;
+    @Column(name = "worker_status")
+    private String workerStatus;
 
     @Column(name = "jobcode")
     private String jobCode;
@@ -83,12 +80,6 @@ public class Employee {
 
     @Column(name = "postal_code")
     private String postalCode;
-
-    @Column(name = "rehire_status")
-    private String rehireStatus;
-
-    @Column(name = "term_status")
-    private String termStatus;
 
     @Column(name = "worker_name")
     private String workerName;

@@ -52,16 +52,13 @@ public class EmployeeCSVService {
                 emp.setFileNumber(record.get("FILENUMBER"));
                 emp.setFirstName(record.get("FIRST_NAME"));
                 emp.setHireDate(record.get("HIREDATE"));
-                emp.setHireStatus(record.get("HIRE_STATUS"));
-                emp.setHireRescinded(record.get("Hire_Rescinded"));
+                emp.setWorkerStatus(record.get("WORKER_STATUS"));
                 emp.setJobCode(record.get("JOBCODE"));
                 emp.setJobTitle(record.get("JOBTITLE"));
                 emp.setLastName(record.get("LAST_NAME"));
                 emp.setLocation(record.get("LOCATION"));
                 emp.setManagerId(record.get("MANAGER_ID"));
                 emp.setPostalCode(record.get("POSTAL_CODE"));
-                emp.setRehireStatus(record.get("REHIRE_STATUS"));
-                emp.setTermStatus(record.get("TERM_STATUS"));
                 emp.setWorkerName(record.get("WORKER_NAME"));
                 emp.setWorkforceType(record.get("WORKFORCE_TYPE"));
                 emp.setEmployeeNumber(employeeNumber);

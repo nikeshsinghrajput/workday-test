@@ -18,7 +18,7 @@ public class Helper {
         List<Employee> employees = page.getContent();
 
         PageableResponse<Employee> response = new PageableResponse<>();
-        response.setContent(employees);
+        response.setEmployees(employees);
         response.setPageNumber(page.getNumber());
         response.setPageSize(page.getSize());
         response.setTotalElement(page.getTotalElements());

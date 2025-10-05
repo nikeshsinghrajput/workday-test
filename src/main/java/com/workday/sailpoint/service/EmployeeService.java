@@ -1,6 +1,5 @@
 package com.workday.sailpoint.service;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +22,6 @@ public class EmployeeService {
 
 	@Autowired
 	EmployeeRepository employeeRepository;
-//	@Autowired
-//	PagingAndSortingRepository pagingAndSortingRepository;
 	
 	public String addEmployee(Employee employee) {
 		try {
@@ -36,18 +33,11 @@ public class EmployeeService {
 		return "data added success fully";
 	}
 
-	public List<Employee> getEmployees(Integer pageNumber, Integer pageSize) {
-		 
-		 PageRequest pageRequest=PageRequest.of(pageNumber, pageSize);
-		 Page<Employee> pageEmployee = employeeRepository.findAll(pageRequest);
-		return pageEmployee.getContent();
-		 
-	}
-
 	public Employee getEmployee(String empId) {
 		return employeeRepository.findById(empId).orElseThrow();
 		 
 	}
+
 	public PageableResponse<Employee> getAll(int pageNumber, int pageSize, String sortBy, String sortDir) {
 	    Sort sort = (sortDir.equalsIgnoreCase("desc")) ? Sort.by(sortBy).descending() : Sort.by(sortBy).ascending();
 	    Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
@@ -82,14 +72,10 @@ public class EmployeeService {
 		if (updatedEmployee.getLocation() != null) existingEmployee.setLocation(updatedEmployee.getLocation());
 		if (updatedEmployee.getManagerId() != null) existingEmployee.setManagerId(updatedEmployee.getManagerId());
 		if (updatedEmployee.getPostalCode() != null) existingEmployee.setPostalCode(updatedEmployee.getPostalCode());
-		if (updatedEmployee.getRehireStatus() != null) existingEmployee.setRehireStatus(updatedEmployee.getRehireStatus());
-		if (updatedEmployee.getTermStatus() != null) existingEmployee.setTermStatus(updatedEmployee.getTermStatus());
 		if (updatedEmployee.getEmail() != null) existingEmployee.setEmail(updatedEmployee.getEmail());
 		if (updatedEmployee.getDivision() != null) existingEmployee.setDivision(updatedEmployee.getDivision());
 		if (updatedEmployee.getWorkforceType() != null) existingEmployee.setWorkforceType(updatedEmployee.getWorkforceType());
-		if (updatedEmployee.getHireStatus() != null) existingEmployee.setHireStatus(updatedEmployee.getHireStatus());
-		if (updatedEmployee.getHireRescinded() != null) existingEmployee.setHireRescinded(updatedEmployee.getHireRescinded());
-
+		if(updatedEmployee.getWorkerStatus() != null) existingEmployee.setWorkerStatus(updatedEmployee.getWorkerStatus());
 		// Not updating: employeeNumber, employeeType, fileNumber, userId, workerName, hireDate, firstName, lastName
 
 		return employeeRepository.save(existingEmployee);

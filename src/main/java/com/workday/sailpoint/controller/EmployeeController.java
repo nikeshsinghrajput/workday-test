@@ -31,6 +31,7 @@ public class EmployeeController {
 	public Employee getEmployee(@PathVariable String employeeId){
 		return employeeService.getEmployee(employeeId);
 	}
+
 	@GetMapping
     public ResponseEntity<PageableResponse<Employee>> getAll(@RequestParam(value = "pageNumber", defaultValue = "0", required = false)int pageNumber,
                                                                @RequestParam(value = "pageSize",defaultValue = "10",required = false)int pageSize,
@@ -52,6 +53,7 @@ public class EmployeeController {
 			return ResponseEntity.badRequest().body("Error: " + e.getMessage());
 		}
 	}
+
 	@PutMapping("/{employeeNumber}")
 	public ResponseEntity<Employee> updateEmployee(
 			@PathVariable String employeeNumber,
