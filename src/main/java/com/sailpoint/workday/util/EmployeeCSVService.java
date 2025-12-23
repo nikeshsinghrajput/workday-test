@@ -1,7 +1,7 @@
-package com.workday.sailpoint.util;
+package com.sailpoint.workday.util;
 
-import com.workday.sailpoint.entity.Employee;
-import com.workday.sailpoint.repository.EmployeeRepository;
+import com.sailpoint.workday.entity.Employee;
+import com.sailpoint.workday.repository.EmployeeRepository;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;

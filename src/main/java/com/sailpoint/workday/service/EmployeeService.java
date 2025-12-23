@@ -1,8 +1,8 @@
-package com.workday.sailpoint.service;
+package com.sailpoint.workday.service;
 
 import java.util.Optional;
 
-import com.workday.sailpoint.dto.EmployeeGlobalResponse;
+import com.sailpoint.workday.dto.EmployeeGlobalResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.data.domain.Page;
@@ -10,11 +10,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.workday.sailpoint.entity.Employee;
-import com.workday.sailpoint.entity.PageableResponse;
-import com.workday.sailpoint.repository.EmployeeRepository;
+import com.sailpoint.workday.entity.Employee;
+import com.sailpoint.workday.entity.PageableResponse;
+import com.sailpoint.workday.repository.EmployeeRepository;
 
-import com.workday.sailpoint.util.Helper;
+import com.sailpoint.workday.util.Helper;
 
 import org.springframework.data.domain.Pageable;
 

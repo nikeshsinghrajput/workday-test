@@ -1,4 +1,4 @@
-package com.workday.sailpoint.dto;
+package com.sailpoint.workday.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

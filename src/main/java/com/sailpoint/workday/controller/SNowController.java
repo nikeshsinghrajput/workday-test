@@ -1,6 +1,6 @@
-package com.workday.sailpoint.controller;
+package com.sailpoint.workday.controller;
 
-import com.workday.sailpoint.service.SNowService;
+import com.sailpoint.workday.service.SNowService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.workday.sailpoint.entity.ServiceNow;
-import com.workday.sailpoint.entity.SNowResponse;
+import com.sailpoint.workday.entity.ServiceNow;
+import com.sailpoint.workday.dto.SNowResponse;
 
 @RestController
 @RequestMapping("/servicenow")

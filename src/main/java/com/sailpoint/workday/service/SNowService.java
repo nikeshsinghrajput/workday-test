@@ -1,15 +1,15 @@
-package com.workday.sailpoint.service;
+package com.sailpoint.workday.service;
 
 import java.util.Optional;
 import java.util.Random;
 
-import com.workday.sailpoint.entity.SNowResponse;
-import com.workday.sailpoint.repository.SNowRepository;
+import com.sailpoint.workday.dto.SNowResponse;
+import com.sailpoint.workday.repository.SNowRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-import com.workday.sailpoint.entity.ServiceNow;
+import com.sailpoint.workday.entity.ServiceNow;
 
 @Service
 public class SNowService {

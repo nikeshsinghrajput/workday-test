@@ -1,4 +1,4 @@
-package com.workday.sailpoint;
+package com.sailpoint;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

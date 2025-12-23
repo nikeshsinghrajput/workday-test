@@ -1,13 +1,12 @@
-package com.workday.sailpoint.util;
+package com.sailpoint.workday.util;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 import org.springframework.data.domain.Page;
 
-import com.workday.sailpoint.entity.Employee;
-import com.workday.sailpoint.entity.PageableResponse;
+import com.sailpoint.workday.entity.Employee;
+import com.sailpoint.workday.entity.PageableResponse;
 
 
 

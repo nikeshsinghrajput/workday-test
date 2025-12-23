@@ -1,17 +1,17 @@
-package com.workday.sailpoint.controller;
+package com.sailpoint.workday.controller;
 
 import java.nio.file.Path;
 
-import com.workday.sailpoint.dto.EmployeeGlobalResponse;
-import com.workday.sailpoint.util.EmployeeCSVService;
+import com.sailpoint.workday.dto.EmployeeGlobalResponse;
+import com.sailpoint.workday.util.EmployeeCSVService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.workday.sailpoint.entity.Employee;
-import com.workday.sailpoint.entity.PageableResponse;
-import com.workday.sailpoint.service.EmployeeService;
+import com.sailpoint.workday.entity.Employee;
+import com.sailpoint.workday.entity.PageableResponse;
+import com.sailpoint.workday.service.EmployeeService;
 
 @RestController
 @RequestMapping("/workday")

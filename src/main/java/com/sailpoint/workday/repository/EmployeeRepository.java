@@ -1,10 +1,10 @@
-package com.workday.sailpoint.repository;
+package com.sailpoint.workday.repository;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.workday.sailpoint.entity.Employee;
+import com.sailpoint.workday.entity.Employee;
 import org.springframework.data.jpa.repository.Query;
 
 public interface EmployeeRepository extends JpaRepository<Employee, String> {

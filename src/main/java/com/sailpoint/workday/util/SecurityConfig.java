@@ -1,4 +1,4 @@
-package com.workday.sailpoint.util;
+package com.sailpoint.workday.util;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
