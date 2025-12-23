@@ -2,6 +2,7 @@ package com.workday.sailpoint.service;
 
 import java.util.Optional;
 
+import com.workday.sailpoint.dto.EmployeeGlobalResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.data.domain.Page;
@@ -22,15 +23,30 @@ public class EmployeeService {
 
 	@Autowired
 	EmployeeRepository employeeRepository;
-	
-	public String addEmployee(Employee employee) {
+
+	public EmployeeGlobalResponse addEmployee(Employee employee) {
 		try {
-		employeeRepository.save(employee);	 
+			String employeeNumber=employee.getEmployeeNumber();
+			if(employeeNumber==null || employeeNumber.isEmpty()) {
+				employeeNumber=getNextEmployeeNumber();
+			}
+			employee.setEmployeeNumber(employeeNumber);
+			employee.setFileNumber(employeeNumber);
+			employeeRepository.save(employee);
+			return new EmployeeGlobalResponse("data added success fully", 200, employeeNumber);
 		}catch (Exception e) {
 			System.out.println("connection issue while adding data");
-			 return "connection issue";
+			return new EmployeeGlobalResponse("connection issue", 400, null);
 		}
-		return "data added success fully";
+
+	}
+
+	public String getNextEmployeeNumber() {
+
+		Long maxEmpNo = employeeRepository.findMaxEmployeeNumber();
+		Long nextEmpNo = maxEmpNo + 1;
+
+		return String.valueOf(nextEmpNo);
 	}
 
 	public Employee getEmployee(String empId) {
@@ -80,5 +96,7 @@ public class EmployeeService {
 
 		return employeeRepository.save(existingEmployee);
 	}
+
+
 }
 

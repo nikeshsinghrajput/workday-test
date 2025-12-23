@@ -2,6 +2,7 @@ package com.workday.sailpoint.controller;
 
 import java.nio.file.Path;
 
+import com.workday.sailpoint.dto.EmployeeGlobalResponse;
 import com.workday.sailpoint.util.EmployeeCSVService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,10 +22,10 @@ public class EmployeeController {
 
 	@Autowired
 	private EmployeeCSVService employeeCSVService;
-	
-	@PostMapping
-	public String addEmployee(@RequestBody Employee employee) {
-	return	employeeService.addEmployee(employee);
+
+	@PostMapping("/addEmployee")
+	public EmployeeGlobalResponse addEmployee(@RequestBody Employee employee) {
+		return  employeeService.addEmployee(employee);
 	}
 
 	@GetMapping("/{employeeId}")
@@ -58,6 +59,8 @@ public class EmployeeController {
 	public ResponseEntity<Employee> updateEmployee(
 			@PathVariable String employeeNumber,
 			@RequestBody Employee updatedEmployee) {
+		System.out.println(employeeNumber);
+		System.out.println(updatedEmployee.toString());
 		Employee employee = employeeService.updateEmployee(employeeNumber, updatedEmployee);
 		return ResponseEntity.ok(employee);
 	}
