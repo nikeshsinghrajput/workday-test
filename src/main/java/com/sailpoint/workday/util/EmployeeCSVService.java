@@ -24,11 +24,15 @@ public class EmployeeCSVService {
                      .withDelimiter(',')
                      .withQuote('"')
                      .withTrim()
-                     .withFirstRecordAsHeader() // skip header row
+                     .withFirstRecordAsHeader()
+                     .withIgnoreHeaderCase()      // IMPORTANT: handles EMPLOYEE_NUMBER vs employee_number
+                     .withAllowMissingColumnNames()
              )) {
 
             for (CSVRecord record : csvParser) {
-                String employeeNumber = record.get("EMPLOYEE_NUMBER");
+
+                // Your file header: employee_number
+                String employeeNumber = record.get("employee_number");
 
                 // Skip if employee already exists
                 if (employeeRepository.findById(employeeNumber).isPresent()) {
@@ -37,34 +41,46 @@ public class EmployeeCSVService {
                 }
 
                 Employee emp = new Employee();
-                emp.setAddressLine1(record.get("ADDRESS_LINE_1"));
-                emp.setAddressWork(record.get("ADDRESS_WORK"));
-                emp.setBuildingCode(record.get("BUILDING_CODE"));
-                emp.setBusinessUnitId(record.get("BUSINESS_UNIT_ID"));
-                emp.setRegion(record.get("REGION"));
-                emp.setEmployeeClass(record.get("CLASS"));
-                emp.setCompanyName(record.get("COMPANY_NAME"));
-                emp.setContractEndDate(record.get("CONTRACT_END_DATE"));
-                emp.setCountryName(record.get("COUNTRY_NAME"));
-                emp.setDepartment(record.get("DEPARTMENT"));
-                emp.setDepartmentId(record.get("DEPARTMENT_ID"));
-                emp.setDivisionId(record.get("DIVISION_ID"));
-                emp.setFileNumber(record.get("FILENUMBER"));
-                emp.setFirstName(record.get("FIRST_NAME"));
-                emp.setHireDate(record.get("HIREDATE"));
-                emp.setWorkerStatus(record.get("WORKER_STATUS"));
-                emp.setJobCode(record.get("JOBCODE"));
-                emp.setJobTitle(record.get("JOBTITLE"));
-                emp.setLastName(record.get("LAST_NAME"));
-                emp.setLocation(record.get("LOCATION"));
-                emp.setManagerId(record.get("MANAGER_ID"));
-                emp.setPostalCode(record.get("POSTAL_CODE"));
-                emp.setWorkerName(record.get("WORKER_NAME"));
-                emp.setWorkforceType(record.get("WORKFORCE_TYPE"));
+
+                // Your file headers (lowercase with underscores)
                 emp.setEmployeeNumber(employeeNumber);
-                emp.setEmail(record.get("EMAIL"));
-                emp.setDivision(record.get("DIVISION"));
-                emp.setEmployeeType(record.get("EMPLOYEE_TYPE"));
+                emp.setFileNumber(record.get("filenumber"));
+
+                emp.setFirstName(record.get("first_name"));
+                emp.setLastName(record.get("last_name"));
+                emp.setWorkerName(record.get("worker_name"));
+                emp.setEmail(record.get("email"));
+
+                emp.setEmployeeClass(record.get("class"));          // from "class"
+                emp.setEmployeeType(record.get("employee_type"));
+                emp.setWorkerStatus(record.get("worker_status"));
+                emp.setWorkforceType(record.get("workforce_type"));
+
+                emp.setCompanyName(record.get("company_name"));
+                emp.setContractEndDate(record.get("contract_end_date"));
+
+                emp.setDepartment(record.get("department"));
+                emp.setDepartmentId(record.get("department_id"));
+
+                emp.setDivision(record.get("division"));
+                emp.setDivisionId(record.get("division_id"));
+
+                emp.setBusinessUnitId(record.get("business_unit_id"));
+
+                emp.setJobCode(record.get("jobcode"));
+                emp.setJobTitle(record.get("jobtitle"));
+                emp.setHireDate(record.get("hiredate"));
+
+                emp.setManagerId(record.get("manager_id"));
+
+                emp.setAddressLine1(record.get("address_line_1"));
+                emp.setAddressWork(record.get("address_work"));
+                emp.setBuildingCode(record.get("building_code"));
+
+                emp.setPostalCode(record.get("postal_code"));
+                emp.setRegion(record.get("region"));
+                emp.setLocation(record.get("location"));
+                emp.setCountryName(record.get("country_name"));
 
                 employeeRepository.save(emp);
                 System.out.println("Imported employee: " + employeeNumber);
