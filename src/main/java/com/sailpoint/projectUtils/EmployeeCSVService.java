@@ -1,4 +1,4 @@
-package com.sailpoint.workday.util;
+package com.sailpoint.projectUtils;
 
 import com.sailpoint.workday.entity.Employee;
 import com.sailpoint.workday.repository.EmployeeRepository;
