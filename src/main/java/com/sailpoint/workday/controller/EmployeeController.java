@@ -43,6 +43,16 @@ public class EmployeeController {
         return new ResponseEntity<>(pageableResponse, HttpStatus.OK);
     }
 
+	@PutMapping("/{employeeNumber}")
+	public ResponseEntity<Employee> updateEmployee(
+			@PathVariable String employeeNumber,
+			@RequestBody Employee updatedEmployee) {
+		System.out.println(employeeNumber);
+		System.out.println(updatedEmployee.toString());
+		Employee employee = employeeService.updateEmployee(employeeNumber, updatedEmployee);
+		return ResponseEntity.ok(employee);
+	}
+
 
 	@PostMapping("/import")
 	public ResponseEntity<String> importCSV(@RequestParam("filePath") String filePath) {
@@ -55,13 +65,14 @@ public class EmployeeController {
 		}
 	}
 
-	@PutMapping("/{employeeNumber}")
-	public ResponseEntity<Employee> updateEmployee(
-			@PathVariable String employeeNumber,
-			@RequestBody Employee updatedEmployee) {
-		System.out.println(employeeNumber);
-		System.out.println(updatedEmployee.toString());
-		Employee employee = employeeService.updateEmployee(employeeNumber, updatedEmployee);
-		return ResponseEntity.ok(employee);
+	@PostMapping("/export")
+	public ResponseEntity<String> exportCSV(@RequestParam("filePath") String filePath) {
+		try {
+			Path path = Path.of(filePath);
+			String result = employeeCSVService.exportCSV(path);
+			return ResponseEntity.ok(result);
+		} catch (Exception e) {
+			return ResponseEntity.badRequest().body("Error: " + e.getMessage());
+		}
 	}
 }

@@ -7,6 +7,10 @@ import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.apache.commons.csv.CSVPrinter;
+import java.io.FileWriter;
+import java.io.Writer;
+import java.util.List;
 
 import java.io.FileReader;
 import java.io.Reader;
@@ -87,6 +91,87 @@ public class EmployeeCSVService {
             }
 
             return "success";
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return e.getMessage();
+        }
+    }
+
+    public String exportCSV(Path filePath) {
+        try (Writer writer = new FileWriter(filePath.toFile());
+             CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT
+                     .withDelimiter(',')
+                     .withQuote('"')
+                     .withHeader(
+                             "employee_number",
+                             "filenumber",
+                             "first_name",
+                             "last_name",
+                             "worker_name",
+                             "email",
+                             "class",
+                             "employee_type",
+                             "worker_status",
+                             "workforce_type",
+                             "company_name",
+                             "contract_end_date",
+                             "department",
+                             "department_id",
+                             "division",
+                             "division_id",
+                             "business_unit_id",
+                             "jobcode",
+                             "jobtitle",
+                             "hiredate",
+                             "manager_id",
+                             "address_line_1",
+                             "address_work",
+                             "building_code",
+                             "postal_code",
+                             "region",
+                             "location",
+                             "country_name"
+                     )
+             )) {
+
+            List<Employee> employees = employeeRepository.findAll();
+
+            for (Employee emp : employees) {
+                csvPrinter.printRecord(
+                        emp.getEmployeeNumber(),
+                        emp.getFileNumber(),
+                        emp.getFirstName(),
+                        emp.getLastName(),
+                        emp.getWorkerName(),
+                        emp.getEmail(),
+                        emp.getEmployeeClass(),
+                        emp.getEmployeeType(),
+                        emp.getWorkerStatus(),
+                        emp.getWorkforceType(),
+                        emp.getCompanyName(),
+                        emp.getContractEndDate(),
+                        emp.getDepartment(),
+                        emp.getDepartmentId(),
+                        emp.getDivision(),
+                        emp.getDivisionId(),
+                        emp.getBusinessUnitId(),
+                        emp.getJobCode(),
+                        emp.getJobTitle(),
+                        emp.getHireDate(),
+                        emp.getManagerId(),
+                        emp.getAddressLine1(),
+                        emp.getAddressWork(),
+                        emp.getBuildingCode(),
+                        emp.getPostalCode(),
+                        emp.getRegion(),
+                        emp.getLocation(),
+                        emp.getCountryName()
+                );
+            }
+
+            csvPrinter.flush();
+            return "export success";
 
         } catch (Exception e) {
             e.printStackTrace();
